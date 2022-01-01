@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class HelloJobConfiguration {
+public class JobConfiguration {
 
     // Job 생성 빌더 팩토리
     private final JobBuilderFactory jobBuilderFactory;
@@ -24,20 +24,20 @@ public class HelloJobConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
 
     @Bean
-    public Job helloJob() {
-        // helloJob이라는 이름으로 Job 생성
-        return jobBuilderFactory.get("helloJob")
-                .start(helloStepFirst())
-                .next(helloStepSecond())
+    public Job job() {
+        // simpleJob이라는 이름으로 Job 생성
+        return jobBuilderFactory.get("simpleJob")
+                .start(stepFirst())
+                .next(stepSecond())
                 .build();
     }
 
     // Job 구동 -> Step을 실행 -> Tasklet을 실행
     @Bean
-    public Step helloStepFirst() {
-        // helloStep1이라는 이름으로 Step 생성
+    public Step stepFirst() {
+        // step1이라는 이름으로 Step 생성
         // tasklet: Step 안에서 단일 태스크로 수행되는 로직 구현
-        return stepBuilderFactory.get("helloStep1")
+        return stepBuilderFactory.get("step1")
                 .tasklet(((contribution, chunkContext) -> {
                     log.info("===== Hello Spring Batch step 1 ===== ");
                     return RepeatStatus.FINISHED;
@@ -45,10 +45,10 @@ public class HelloJobConfiguration {
     }
 
     @Bean
-    public Step helloStepSecond() {
-        // helloStep2이라는 이름으로 Step 생성
+    public Step stepSecond() {
+        // step2이라는 이름으로 Step 생성
         // tasklet: Step 안에서 단일 태스크로 수행되는 로직 구현
-        return stepBuilderFactory.get("helloStep2")
+        return stepBuilderFactory.get("step2")
                 .tasklet(new Tasklet() {
                     @Override
                     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
