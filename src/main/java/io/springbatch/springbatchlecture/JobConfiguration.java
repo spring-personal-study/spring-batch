@@ -3,6 +3,7 @@ package io.springbatch.springbatchlecture;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -12,6 +13,9 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Date;
+import java.util.Map;
 
 @Slf4j
 @Configuration
@@ -52,6 +56,23 @@ public class JobConfiguration {
                 .tasklet(new Tasklet() {
                     @Override
                     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+                        // StepContribution, ChunkContext 모두 JobParameter를 필드로 가지고 있으므로 parameter들을 참조할 수 있다.
+                        // 그러나 반환 타입은 조금 다르다.
+                        // StepContribution에서 JobParamter를 불러올떄:
+                        JobParameters contributionJobParameters = contribution.getStepExecution().getJobExecution().getJobParameters();
+                        String name = contributionJobParameters.getString("name");
+                        Long seq = contributionJobParameters.getLong("seq");
+                        Date date = contributionJobParameters.getDate("date");
+                        Double age = contributionJobParameters.getDouble("age");
+                        log.info("name: {}, seq: {}, date: {}, age: {}", name, seq, date, age);
+
+                        // ChunkContext에서 JobParamter를 불러올 때:
+                        Map<String, Object> chunkContextJobParameters = chunkContext.getStepContext().getJobParameters();
+
+                        for (Map.Entry entry : chunkContextJobParameters.entrySet()) {
+                            log.info("{}", entry.getValue());
+                        }
+
                         log.info("===== Hello Spring Batch step 2 =====");
                         return RepeatStatus.FINISHED;
                     }
