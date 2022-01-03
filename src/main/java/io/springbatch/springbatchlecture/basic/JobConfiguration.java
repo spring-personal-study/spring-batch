@@ -1,4 +1,5 @@
-package io.springbatch.springbatchlecture;
+/*
+package io.springbatch.springbatchlecture.basic;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,7 @@ public class JobConfiguration {
         return jobBuilderFactory.get("simpleJob")
                 .start(stepFirst())
                 .next(stepSecond())
+                .next(stepThird())
                 .build();
     }
 
@@ -78,4 +80,14 @@ public class JobConfiguration {
                     }
                 }).build();
     }
+
+    @Bean
+    public Step stepThird() {
+        // customStep 이라는 이름으로 Step 생성
+        // tasklet: Step 안에서 단일 태스크로 수행되는 로직 구현
+        return stepBuilderFactory.get("customStep")
+                .tasklet(new CustomTasklet())
+                .build();
+    }
 }
+*/

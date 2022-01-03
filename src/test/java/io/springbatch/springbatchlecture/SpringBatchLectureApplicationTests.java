@@ -1,6 +1,7 @@
+
 package io.springbatch.springbatchlecture;
 
-import org.assertj.core.api.Assertions;
+import io.springbatch.springbatchlecture.basic.JobConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -10,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
-import java.util.List;
-
-@SpringBootTest
+@SpringBootTest(classes = {JobConfiguration.class})
 class SpringBatchLectureApplicationTests {
 
     @Autowired
@@ -27,7 +26,7 @@ class SpringBatchLectureApplicationTests {
 
     @Test
     public void test() {
-      System.out.println("");
+        System.out.println("");
 
         // Assertions.assertThat(getJobTester("job")).isNotNull();
 
@@ -43,3 +42,4 @@ class SpringBatchLectureApplicationTests {
     }
 
 }
+
