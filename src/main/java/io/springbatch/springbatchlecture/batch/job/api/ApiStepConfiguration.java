@@ -12,6 +12,9 @@ import io.springbatch.springbatchlecture.batch.domain.dto.ApiRequestDTO;
 import io.springbatch.springbatchlecture.batch.domain.dto.ProductDTO;
 import io.springbatch.springbatchlecture.batch.domain.entity.Product;
 import io.springbatch.springbatchlecture.batch.partition.ProductPartitioner;
+import io.springbatch.springbatchlecture.service.ApiService1;
+import io.springbatch.springbatchlecture.service.ApiService2;
+import io.springbatch.springbatchlecture.service.ApiService3;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -42,6 +45,10 @@ public class ApiStepConfiguration {
 
     private final StepBuilderFactory stepBuilderFactory;
     private final DataSource dataSource;
+
+    private final ApiService1 apiService1;
+    private final ApiService2 apiService2;
+    private final ApiService3 apiService3;
 
     private final int chunkSize = 10;
 
@@ -128,9 +135,9 @@ public class ApiStepConfiguration {
         ClassifierCompositeItemWriter<ApiRequestDTO> processor = new ClassifierCompositeItemWriter<>();
         WriterClassifier<ApiRequestDTO, ItemWriter<? super ApiRequestDTO>> classifier = new WriterClassifier<>();
         Map<String, ItemWriter<ApiRequestDTO>> writerMap = new HashMap<>();
-        writerMap.put("1", new ApiItemWriter1());
-        writerMap.put("2", new ApiItemWriter2());
-        writerMap.put("3", new ApiItemWriter3());
+        writerMap.put("1", new ApiItemWriter1(apiService1));
+        writerMap.put("2", new ApiItemWriter2(apiService2));
+        writerMap.put("3", new ApiItemWriter3(apiService3));
         classifier.setWriterMap(writerMap);
         processor.setClassifier(classifier);
 
