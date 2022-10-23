@@ -23,8 +23,31 @@ dependencies {
     // batch
     implementation 'org.springframework.boot:spring-boot-starter-batch'
 
+<<<<<<< HEAD
     // data-jpa
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.2'
+=======
+    // scheduler
+    implementation 'org.springframework.boot:spring-boot-starter-quartz'
+
+    // db
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    // jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // modelmapper
+    implementation 'org.modelmapper:modelmapper:3.1.0'
+
+
+    // httpclient
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+>>>>>>> 3ab8266 (add simple batch that works)
 
     // test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

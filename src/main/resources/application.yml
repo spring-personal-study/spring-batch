@@ -1,4 +1,5 @@
 spring:
+<<<<<<< HEAD
   batch:
 
   profiles:
@@ -41,3 +42,23 @@ spring:
     jdbc:
       initialize-schema: always
 
+=======
+  profiles:
+    active: local
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/spring_batch
+      username: charlie
+      password: netpuneo5
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  batch:
+    jdbc:
+      initialize-schema: never
+    job:
+      names: ${job.name:NONE}
+>>>>>>> 3ab8266 (add simple batch that works)
