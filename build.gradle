@@ -23,10 +23,6 @@ dependencies {
     // batch
     implementation 'org.springframework.boot:spring-boot-starter-batch'
 
-<<<<<<< HEAD
-    // data-jpa
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.2'
-=======
     // scheduler
     implementation 'org.springframework.boot:spring-boot-starter-quartz'
 
@@ -37,17 +33,8 @@ dependencies {
     // jpa
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    // modelmapper
-    implementation 'org.modelmapper:modelmapper:3.1.0'
-
-
     // httpclient
     implementation 'org.apache.httpcomponents:httpclient:4.5.13'
-
-    // lombok
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
->>>>>>> 3ab8266 (add simple batch that works)
 
     // test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -59,20 +46,8 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
 
-
-    // h2
-    runtimeOnly 'com.h2database:h2'
-
-    // mysql
-    implementation 'mysql:mysql-connector-java:8.0.27'
-    runtimeOnly 'mysql:mysql-connector-java'
-
-
     // modelmapper
-    implementation 'org.modelmapper:modelmapper:2.4.5'
-
-    // quartz
-    implementation 'org.quartz-scheduler:quartz:2.3.2'
+    implementation 'org.modelmapper:modelmapper:3.1.0'
 
 }
 
