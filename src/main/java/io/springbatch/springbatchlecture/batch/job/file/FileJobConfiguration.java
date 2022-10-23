@@ -11,7 +11,6 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.builder.JpaItemWriterBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
@@ -59,7 +58,7 @@ public class FileJobConfiguration {
                 .targetType(ProductDTO.class)
                 .linesToSkip(1)
                 .delimited().delimiter(",")
-                .names(new String[] {"id", "name", "price", "type"})
+                .names(new String[]{"id", "name", "price", "type"})
                 .build();
     }
 
